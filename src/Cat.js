@@ -1,7 +1,7 @@
 var Cat = cc.Sprite.extend({
 	ctor: function(x,y){
 	this._super();
-	this.initWithFile('images/Cat2.png');
+	this.initWithFile('images/catt.gif');
 	this.x = x;
 	this.y = y;
     this.direction = Cat.MOVE.STILL;

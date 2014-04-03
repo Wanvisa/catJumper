@@ -4,15 +4,28 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
 
 
-        var gameBG = cc.Sprite.create('images/myBG.jpg');
-        gameBG.setAnchorPoint( cc.p( 0,0 ));
-        this.addChild(gameBG);
+        this.gameBG = new Background();
+        this.gameBG.setAnchorPoint( cc.p( 0,0 ));
+        this.gameBG.setPosition( cc.p( 0,0 ));
+        this.addChild(this.gameBG);
+        this.gameBG.scheduleUpdate();
 
-          this.cat = new Cat(200,200);
+        this.gameBG2 = new Background();
+        this.gameBG2.setAnchorPoint( cc.p( 0,0 ));
+        this.gameBG2.setPosition( cc.p(0,-600 ));
+        this.addChild(this.gameBG2);
+        this.gameBG2.scheduleUpdate();
+
+          
+
+        this.item = new Item();
+        this.addChild(this.item);
+        this.item.randomPosition();
+        
+         this.cat = new Cat(200,200);
           this.addChild(this.cat);
          this.cat.scheduleUpdate();
         this.setKeyboardEnabled( true );
-
         return true;
     },
      onKeyDown: function( e ) {
