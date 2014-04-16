@@ -16,16 +16,21 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.gameBG2);
         this.gameBG2.scheduleUpdate();
 
-          
 
-        this.item = new Item();
-        this.addChild(this.item);
-        this.item.randomPosition();
+        this.wallLeft = null;
+        this.wallRight = null;          
+        this.createWall();
+
+        // this.item = new Item();
+        // this.addChild(this.item);
+        // this.item.randomPosition();
         
          this.cat = new Cat(200,200);
           this.addChild(this.cat);
          this.cat.scheduleUpdate();
         this.setKeyboardEnabled( true );
+
+
         return true;
     },
      onKeyDown: function( e ) {
@@ -48,11 +53,24 @@ var GameLayer = cc.LayerColor.extend({
     },
     onKeyUp : function(e){
            this.cat.setDirection( Cat.MOVE.STILL );
+    },
+    createWall : function(){
+      //  console.log("in in in");
+        this.wallLeft = new Wall();
+        this.wallLeft.setAnchorPoint(new cc.Point(0,0))
+        this.wallLeft.setPosition(new cc.Point(-120,400));
+        this.addChild(this.wallLeft);
+        //this.wallLeft.scheduleUpdate();
+
+        this.wallRight = new Wall();
+        this.wallRight.setAnchorPoint(new cc.Point(0,0))
+        this.wallRight.setPosition(new cc.Point(930,400));
+        this.addChild(this.wallRight);
     }
 });
 
-var StartScene = cc.Scene.extend({
-    onEnter: function() {
+        var StartScene = cc.Scene.extend({
+     onEnter: function() {
         this._super();
         var layer = new GameLayer();
         layer.init();
