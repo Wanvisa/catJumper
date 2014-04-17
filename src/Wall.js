@@ -13,15 +13,13 @@ var Wall = cc.Sprite.extend({
     this.addChild(this.RightWall);
 	},
     update:function(dt){
-         var posy = this.getPositionY();
-        if(posy<-100)
-        { 
-            this.randomPositiony();
-        }
-        else
-        {
-            this.setPositionX(posy-5);
-        }
-    }
+      posy = this.getPositionY();
+      if(posy<0)
+      {
+        posy = 550;
+      }
+      this.setPosition(new cc.Point(this.getPositionX(),posy-5));
+    },
+
 	
 });

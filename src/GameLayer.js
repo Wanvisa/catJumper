@@ -58,14 +58,15 @@ var GameLayer = cc.LayerColor.extend({
       //  console.log("in in in");
         this.wallLeft = new Wall();
         this.wallLeft.setAnchorPoint(new cc.Point(0,0))
-        this.wallLeft.setPosition(new cc.Point(-120,400));
+        this.wallLeft.setPosition(new cc.Point(-120,100));
         this.addChild(this.wallLeft);
-        //this.wallLeft.scheduleUpdate();
+        this.wallLeft.scheduleUpdate();
 
         this.wallRight = new Wall();
         this.wallRight.setAnchorPoint(new cc.Point(0,0))
-        this.wallRight.setPosition(new cc.Point(930,400));
+        this.wallRight.setPosition(new cc.Point(930,200));
         this.addChild(this.wallRight);
+       this.wallRight.scheduleUpdate();
     }
 });
 
