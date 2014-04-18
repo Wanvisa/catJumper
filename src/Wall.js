@@ -1,25 +1,48 @@
 var Wall = cc.Sprite.extend({
 	ctor: function(){
     this._super();
-    this.leftWall = cc.Sprite.create('images/Wall.png');
-    this.leftWall.setAnchorPoint(new cc.Point(0.5,0));
-    this.leftWall.setPosition(new cc.Point(100,0));
-    this.addChild(this.leftWall);
+    this.initWithFile('images/Wall.png');
+    // this.leftWall = cc.Sprite.create('images/Wall.png');
+    // this.leftWall.setAnchorPoint(new cc.Point(0.5,0));
+    // this.leftWall.setPosition(new cc.Point(100,0));
+    // this.addChild(this.leftWall);
 
 
-    this.RightWall = cc.Sprite.create('images/Wall.png');
-    this.RightWall.setAnchorPoint(new cc.Point(0.5,0));
-    this.RightWall.setPosition(new cc.Point(-100,0));
-    this.addChild(this.RightWall);
+    // this.RightWall = cc.Sprite.create('images/Wall.png');
+    // this.RightWall.setAnchorPoint(new cc.Point(0.5,0));
+    // this.RightWall.setPosition(new cc.Point(-100,0));
+    // this.addChild(this.RightWall);
+    //this.setScale(0.1);
 	},
     update:function(dt){
       posy = this.getPositionY();
-      if(posy<0)
+      if(posy<1)
       {
-        posy = 550;
+
+          this.randomPositionx();
+         // posy = 550;
       }
-      this.setPosition(new cc.Point(this.getPositionX(),posy-5));
+      else
+        {
+          this.setPosition(new cc.Point(this.getPositionX(),posy-5));
+        }
     },
+    randomPositionx:function()
+    {
+      if(this.getPositionX<=0)
+      {
+          var posx = Math.floor(Math.random()*90+100)*-1;
+          this.setPosition(new cc.Point(posx,550));
+          console.log("aaaa");
+      }
+      else 
+      {
+          var posx = Math.floor(Math.random()*600+100);
+          this.setPosition(new cc.Point(posx,550));
+          console.log("bbbb");
+      }
+    },
+
 
 	
 });
