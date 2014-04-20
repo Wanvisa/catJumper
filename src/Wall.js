@@ -16,7 +16,7 @@ var Wall = cc.Sprite.extend({
 	},
     update:function(dt){
       posy = this.getPositionY();
-      if(posy<1)
+      if(posy<-10)
       {
 
           this.randomPositionx();
@@ -31,15 +31,15 @@ var Wall = cc.Sprite.extend({
     {
       if(this.getPositionX<=0)
       {
-          var posx = Math.floor(Math.random()*90+100)*-1;
+          var posx = Math.floor(Math.random()*200)+300*-1;
           this.setPosition(new cc.Point(posx,550));
-          console.log("aaaa");
+          //console.log("aaaa");
       }
       else 
       {
-          var posx = Math.floor(Math.random()*600+100);
+          var posx = Math.floor(Math.random()*350)+200;
           this.setPosition(new cc.Point(posx,550));
-          console.log("bbbb");
+          //console.log("bbbb");
       }
     },
 

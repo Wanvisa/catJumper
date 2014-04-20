@@ -14,16 +14,16 @@ var Cat = cc.Sprite.extend({
     update : function(dt){
     	switch(this.direction){
     		case Cat.MOVE.UP:
-    	      this.y += 5;
+    	      this.y += 12;
     		  break;
     		case Cat.MOVE.DOWN:
-    		  this.y -= 5;
+    		  this.y -= 12;
     		  break;
     		case Cat.MOVE.RIGHT:
-    		  this.x += 5;
+    		  this.x += 12;
     		  break;
     		case Cat.MOVE.LEFT:
-    		  this.x -= 5;
+    		  this.x -= 12;
     		  break;
     		default:
     		  break;
