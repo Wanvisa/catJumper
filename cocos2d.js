@@ -16,7 +16,8 @@
             'src/Cat.js'  ,
             'src/Background.js', 
             'src/Item.js',
-            'src/Wall.js', //add your own files in order here
+            'src/Wall.js',
+            'src/Coldetect.js', //add your own files in order here
         ]
     };
 

@@ -41,7 +41,15 @@ var Wall = cc.Sprite.extend({
           this.setPosition(new cc.Point(posx,550));
           //console.log("bbbb");
       }
+      
     },
+    hit:function(cat)
+    {
+      var catPos = cat.getPosition();
+      var myPos = this.getPosition();
+      return checkPlayerPillarCollision( catPos.x, catPos.y, myPos.x, myPos.y );
+     
+    }
 
 
 	
