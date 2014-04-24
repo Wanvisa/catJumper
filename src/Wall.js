@@ -37,19 +37,20 @@ var Wall = cc.Sprite.extend({
   },
 
   randomPositionx:function(){
+     // console.log(this.getPositionX());
+      if(this.getPositionX()<=0){
 
-      if(this.getPositionX<=0){
-
-          var posx = Math.floor(Math.random()*200)+300*-1;
+          var posx = (Math.floor(Math.random()*200)+50)*-1;
           this.setPosition(new cc.Point(posx,550));
-          //console.log("aaaa");
+
+         // console.log("aaaa");
 
       }
       else{
 
-          var posx = Math.floor(Math.random()*350)+200;
+          var posx = Math.floor(Math.random()*350)+600;
           this.setPosition(new cc.Point(posx,550));
-          //console.log("bbbb");
+         // console.log("bbbb");
       }
       
   },

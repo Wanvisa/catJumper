@@ -33,6 +33,7 @@ var GameLayer = cc.LayerColor.extend({
         this.cat = new Cat(200,200);
         this.addChild(this.cat);
         this.cat.scheduleUpdate();
+        this.cat.start();
         this.setKeyboardEnabled( true );
         this.scheduleUpdate();
 
@@ -81,7 +82,7 @@ var GameLayer = cc.LayerColor.extend({
 
          //  console.log("in in in");
         this.wallLeft = new Wall();
-        this.wallLeft.setAnchorPoint(new cc.Point(0,0.5))
+        // this.wallLeft.setAnchorPoint(new cc.Point(0,0.5))
         this.wallLeft.setPosition(new cc.Point(-120,100));
         this.addChild(this.wallLeft);
         this.wallLeft.start();
@@ -89,7 +90,7 @@ var GameLayer = cc.LayerColor.extend({
         
 
         this.wallRight = new Wall();
-        this.wallRight.setAnchorPoint(new cc.Point(1,0.5))
+        // this.wallRight.setAnchorPoint(new cc.Point(1,0.5))
         this.wallRight.setPosition(new cc.Point(950,300));
         this.addChild(this.wallRight);
         this.wallRight.start();
@@ -115,6 +116,11 @@ var GameLayer = cc.LayerColor.extend({
        this.gameBG2.stop();
        this.wallLeft.stop();
        this.wallRight.stop();
+       this.cat.stop();
+        var con = confirm("Play again??");
+            if(con){
+               location.reload();
+            }
     }
 });
 
