@@ -40,22 +40,22 @@ var Wall = cc.Sprite.extend({
      // console.log(this.getPositionX());
       if(this.getPositionX()<=0){
 
-          var posx = (Math.floor(Math.random()*200)+50)*-1;
-          this.setPosition(new cc.Point(posx,550));
+          //var posx = (Math.floor(Math.random()*200)+50)*-1;
+          this.setPosition(new cc.Point(-100,550));
 
          // console.log("aaaa");
 
       }
       else{
 
-          var posx = Math.floor(Math.random()*350)+600;
-          this.setPosition(new cc.Point(posx,550));
+          //var posx = Math.floor(Math.random()*350)+600;
+          this.setPosition(new cc.Point(800,550));
          // console.log("bbbb");
       }
       
   },
 
-  start : function(){
+   start : function(){
 
         this.started = true;
     },
@@ -73,4 +73,15 @@ var Wall = cc.Sprite.extend({
       return checkPlayerPillarCollision( catPos.x, catPos.y, myPos.x, myPos.y );
      
   }
+  // hitItem:function(item){
+
+  //     var itemPos = item.getPosition();
+  //     var myPos = this.getPosition();
+  //     return checkPlayerWallCollision( itemPos.x, itemPos.y, myPos.x, myPos.y );
+     
+  // },
+  // checkPlayerWallCollision : function( itemX, itemY, posX, posY ) {
+  //   return ( ( Math.abs( itemX - posX ) <= 340 ) &&
+  //    ( Math.abs( itemY - posY ) <= 66 ) );
+//}
 });

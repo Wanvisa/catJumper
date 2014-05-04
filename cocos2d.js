@@ -17,7 +17,8 @@
             'src/Background.js', 
             'src/Item.js',
             'src/Wall.js',
-            'src/Coldetect.js', //add your own files in order here
+            'src/Coldetect.js',
+             //add your own files in order here
         ]
     };
 

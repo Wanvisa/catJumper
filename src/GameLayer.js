@@ -20,14 +20,20 @@ var GameLayer = cc.LayerColor.extend({
 
         this.state = GameLayer.STATES.FRONT;
 
+
+        this.item = new Item();
+        this.item.randomPosition();
+        this.addChild(this.item);
+
+
+        
+
         this.wallLeft = null;
         this.wallRight = null;          
         this.createWall();
        
 
-        // this.item = new Item();
-        // this.addChild(this.item);
-        // this.item.randomPosition();
+        
         
         
         this.cat = new Cat(200,200);
@@ -108,6 +114,18 @@ var GameLayer = cc.LayerColor.extend({
                 // alert("hittt");
 
             }
+
+            if(this.item.hit(this.cat)){
+                this.item.randomPosition();
+            }
+
+            // if(this.wallLeft.hitItem(this.item)){
+            //     this.item.randomPosition();
+            // }
+
+            // if(this.wallRight.hitItem(this.item)){
+            //     this.item.randomPosition();
+            // }
             
         
     },
