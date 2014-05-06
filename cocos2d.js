@@ -13,11 +13,11 @@
         //SingleEngineFile:'',
         appFiles:[
             'src/GameLayer.js' ,
-            'src/Cat.js'  ,
-            'src/Background.js', 
+            'src/Cat.js',
+            'src/BackGround.js',
+            'src/Map.js',
             'src/Item.js',
             'src/Wall.js',
-            'src/Coldetect.js',
              //add your own files in order here
         ]
     };

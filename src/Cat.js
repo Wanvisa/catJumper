@@ -1,7 +1,6 @@
 var Cat = cc.Sprite.extend({
 	ctor: function(x,y){
 	   this._super();
-       this.started = false;
        this.initWithFile('images/catt.gif');
 	   this.x = x;
 	   this.y = y;
@@ -14,10 +13,9 @@ var Cat = cc.Sprite.extend({
         this.setPosition(cc.p(this.x, this.y));
     },
     update : function(dt){
-         if(this.started)
-         {
-    	   switch(this.direction){
-    		  case Cat.MOVE.UP:
+        
+    	 switch(this.direction){
+    		case Cat.MOVE.UP:
     	           this.y += 12;
     		       break;
     		case Cat.MOVE.DOWN:
@@ -35,7 +33,7 @@ var Cat = cc.Sprite.extend({
 
 
             this.updatePosition();
-        }
+        
     },
 
     setDirection: function(dir){
@@ -43,18 +41,9 @@ var Cat = cc.Sprite.extend({
         this.direction = dir;
         
     },
-
-    start : function(){
-
-        this.started = true;
-    },
-
-    stop : function(){
-
-        this.started = false;
-
-      },
-
+    
+   
+    
 });
 
 Cat.MOVE = {

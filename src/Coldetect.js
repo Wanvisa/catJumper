@@ -1,4 +1,4 @@
-var checkPlayerPillarCollision = function( playerX, playerY, catX, catY ) {
-    return ( ( Math.abs( playerX - catX ) <= 330 ) &&
-		 ( Math.abs( playerY - catY ) <= 73 ) );
+var checkPlayerWallCollision = function( playerX, playerY, WallX, WallY ) {
+    return ( ( Math.abs( playerX - WallX ) <= 330 ) &&
+		 ( Math.abs( playerY - WallY ) <= 73 ) );
 };

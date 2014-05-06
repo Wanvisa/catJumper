@@ -1,24 +1,33 @@
 var Item = cc.Sprite.extend({
-	ctor:function(){
+	ctor:function(map){
+    this.map = map;
+    this.cat = map.cat;
 		this._super();
 		this.initWithFile('images/items.gif');
+    
 	},
 
-	randomPosition : function(){
-		var posx = 1 + Math.floor(Math.random() * 800);
-		var posy = 1 + Math.floor(Math.random() * 400);
-		this.setPosition(new cc.Point(posx,posy));
-	},
+	
    hit:function(cat){
-      var catPos = cat.getPosition();
-      var myPosX = this.getPositionX();
-      var myPosY = this.getPositionY();
-      return this.checkPlayerItemCollision( catPos.x, catPos.y, myPosX, myPosY );
+      var catPosX = cat.getPositionX();
+      var catPosY = cat.getPositionY();
+      var myPosX = this.map.getPositionX() + this.getPositionX();
+      var myPosY = this.map.getPositionY() +this.getPositionY();
+
+   return this.checkPlayerItemCollision( catPosX, catPosY, myPosX, myPosY );
      
   },
   checkPlayerItemCollision : function( playerX, playerY, itemX, itemY ) {
-    return ( ( Math.abs( playerX - itemX ) <= 65 ) &&
-		 ( Math.abs( playerY - itemY ) <= 70 ) );
-}
+    return ( ( Math.abs( playerX - itemX ) <= 40 ) &&
+     ( Math.abs( playerY - itemY ) <= 68 ) );
+      
+},
+  update : function(dt){
+  
+    if(this.hit(this.cat)){
+      this.getParent().removeChild(this);
+    }
+  }
+
 
 });

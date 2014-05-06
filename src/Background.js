@@ -1,45 +1,31 @@
-var Background = cc.Sprite.extend({
-
-		ctor: function(){
-			
+var BackGround = cc.Sprite.extend({
+	ctor: function(){
 		this._super();
-		this.started = false;
-        this.initWithFile('images/BG.gif');
+		this.initWithFile('images/BG.gif');
 
-		},
+	},
+	update: function(dt){
 
-		update: function(dt){
+			
+			var posy = this.getPositionY();
 
-			if(this.started){
-
-				var posy = this.getPositionY();
-
-				if(posy >= 600){
+				if(posy <= -600){
 		 	
-		 			if(this.gameBG){
+		 			if(this.BG1){
 
 		 				this.setPositionY(0);
 					}
 					else{
 
-		 				this.setPositionY(-590);
+		 				this.setPositionY(590);
 					}
 		 		}
 
 				else{
 
-            		this.setPositionY(posy + 5);
+            		this.setPositionY(posy - 5);
 				}
-			}
+			
 		},
 
-		start : function(){
-
-        	this.started = true;
-    	},
-
-    	stop : function(){
-
-        	this.started = false;
-        },
-});
+})
