@@ -20,12 +20,12 @@ var Map = cc.Sprite.extend({
 		array[1] = [
 	    '#..h..',
 		'..o..#',
-		'.oooh.',
+		'.o....',
 		'#...o.',
-		'.ho..#',
+		'.oo..#',
 		'....oo',
-		'.oooh.',
-		'..oo.#',
+		'....h.',
+		'.....#',
 		];
 	  	this.GAMEMAP = array[1];
 
@@ -59,6 +59,7 @@ var Map = cc.Sprite.extend({
 	  			this.heart.setAnchorPoint(cc.p(0,0));
 	  			this.heart.setPosition(cc.p(c*100,r*100));
 	  			this.addChild(this.heart);
+	  			this.heart.scheduleUpdate();
 
 	  		}
 	  		
