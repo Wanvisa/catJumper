@@ -3,18 +3,19 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
+        this.state = GameLayer.STATES.FRONT; 
 
         this.BG1 = new BackGround();
         this.BG1.setAnchorPoint(cc.p(0,0));
         this.BG1.setPosition(cc.p(0,0));
         this.addChild(this.BG1);
-        this.BG1.scheduleUpdate();
-
+        // this.BG1.scheduleUpdate();
+        
         this.BG2 = new BackGround();
         this.BG2.setAnchorPoint(cc.p(0,0));
         this.BG2.setPosition(cc.p(0,600));
         this.addChild(this.BG2);
-        this.BG2.scheduleUpdate();
+        // this.BG2.scheduleUpdate();
 
         this.cat = new Cat(400,200);
         this.cat.setAnchorPoint(cc.p(0.5,0.5));
@@ -23,22 +24,26 @@ var GameLayer = cc.LayerColor.extend({
         this.map1 = new Map(this);
         this.map1.setPosition((new cc.p(0,0)));
         this.addChild(this.map1);
-        this.map1.scheduleUpdate();
+        // this.map1.scheduleUpdate();
 
         this.map2 = new Map(this);
         this.addChild(this.map2);
         this.map2.setPosition(new cc.p(0,-1000));
-        this.map2.scheduleUpdate();
+        // this.map2.scheduleUpdate();
 
         
-        this.cat.scheduleUpdate();
-
+        // this.cat.scheduleUpdate();
+        this.scheduleUpdate();
         this.setKeyboardEnabled( true );
     
 
     },
     onKeyDown: function( e ) {
-
+        
+        if(this.state == GameLayer.STATES.FRONT ){
+            this.state = GameLayer.STATES.STARTED;
+            this.startGame();
+        }
        
         switch( e ) {
         case cc.KEY.left:
@@ -55,10 +60,20 @@ var GameLayer = cc.LayerColor.extend({
                  break;
         }
     },
-     onKeyUp : function(e){
+    startGame : function(){
+
+            this.BG1.scheduleUpdate();
+            this.BG2.scheduleUpdate();
+            this.map1.scheduleUpdate();
+            this.map2.scheduleUpdate();
+            this.cat.scheduleUpdate();
+
+    },
+    onKeyUp : function(e){
 
            this.cat.setDirection( Cat.MOVE.STILL );
     },
+   
 
 });
 
@@ -70,4 +85,9 @@ var StartScene = cc.Scene.extend({
         this.addChild( layer );
     }
 });
+GameLayer.STATES = {
+    FRONT: 1,
+    STARTED: 2,
+    DEAD: 3
+};
 
