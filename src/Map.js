@@ -7,7 +7,7 @@ var Map = cc.Sprite.extend({
 		this.HEIGHT = 8;
 		this.WallX = 0;
 		this.WallY = 0;
-	  	this.GAMEMAP =[
+		array[0] = [
 	    '#.....',
 		'..o..#',
 		'.ooo..',
@@ -17,6 +17,18 @@ var Map = cc.Sprite.extend({
 		'.ooo..',
 		'..oo.#',
 		];
+		array[1] = [
+	    '#..h..',
+		'..o..#',
+		'.oooh.',
+		'#...o.',
+		'.ho..#',
+		'....oo',
+		'.oooh.',
+		'..oo.#',
+		];
+	  	this.GAMEMAP = array[1];
+
 	  for(var r = 0;r<this.HEIGHT;r++)
 	  	for(var c = 0;c<this.WIDTH;c++){
 	  		if(this.GAMEMAP[r][c]=='#'){
@@ -40,6 +52,14 @@ var Map = cc.Sprite.extend({
 	  			this.item.setPosition(cc.p(c*100+25,r*100+28));
 	  			this.addChild(this.item);
 	  			this.item.scheduleUpdate();
+	  		}
+
+	  		else if(this.GAMEMAP[r][c]=='h'){
+	  			this.heart = new Heart(this);
+	  			this.heart.setAnchorPoint(cc.p(0,0));
+	  			this.heart.setPosition(cc.p(c*100,r*100));
+	  			this.addChild(this.heart);
+
 	  		}
 	  		
 	  	}
@@ -67,8 +87,5 @@ var Map = cc.Sprite.extend({
 				}
 	},
 
-	
-
-	
-
 });
+var array = [];

@@ -18,6 +18,7 @@
             'src/Map.js',
             'src/Item.js',
             'src/Wall.js',
+            'src/Heart.js',
              //add your own files in order here
         ]
     };
