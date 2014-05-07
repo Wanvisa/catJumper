@@ -1,13 +1,27 @@
 var Cat = cc.Sprite.extend({
 	ctor: function(x,y){
 	   this._super();
-       this.initWithFile('images/catt.gif');
+       this.initWithFile('images/cat1.png');
 	   this.x = x;
 	   this.y = y;
+       this.speed = 15;
        this.direction = Cat.MOVE.STILL;
+       this.idle();
 	   this.updatePosition();
     },
 
+    idle: function(){
+        var catAnimation = new cc.Animation.create();
+        catAnimation.setDelayPerUnit(0.2);
+        catAnimation.addSpriteFrameWithFile('images/cat1.png');
+        catAnimation.addSpriteFrameWithFile('images/cat2.png');
+        catAnimation.addSpriteFrameWithFile('images/cat3.png');
+        catAnimation.addSpriteFrameWithFile('images/cat4.png');
+
+        if( this.catAnimate ) this.stopAction ( this.catAnimate );
+        this.catAnimate = cc.RepeatForever.create(cc.Animate.create(catAnimation));
+        this.runAction(this.catAnimate);
+    }, 
 	updatePosition: function() {
 
         this.setPosition(cc.p(this.x, this.y));
@@ -16,16 +30,16 @@ var Cat = cc.Sprite.extend({
         
     	 switch(this.direction){
     		case Cat.MOVE.UP:
-    	           this.y += 12;
+    	           this.y += this.speed;
     		       break;
     		case Cat.MOVE.DOWN:
-    		      this.y -= 12;
+    		      this.y -= this.speed;
     		      break;
     		case Cat.MOVE.RIGHT:
-    		      this.x += 12;
+    		      this.x += this.speed;
     		      break;
     		case Cat.MOVE.LEFT:
-    		      this.x -= 12;
+    		      this.x -= this.speed;
     		      break;
     		default:
     		      break;
