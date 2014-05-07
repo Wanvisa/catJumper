@@ -1,10 +1,10 @@
 var Cat = cc.Sprite.extend({
 	ctor: function(x,y){
 	   this._super();
-       this.initWithFile('images/cat1.png');
+       this.initWithFile('images/cat11.png');
 	   this.x = x;
 	   this.y = y;
-       this.speed = 15;
+       this.speed = 10;
        this.direction = Cat.MOVE.STILL;
        this.idle();
 	   this.updatePosition();
@@ -13,10 +13,10 @@ var Cat = cc.Sprite.extend({
     idle: function(){
         var catAnimation = new cc.Animation.create();
         catAnimation.setDelayPerUnit(0.2);
-        catAnimation.addSpriteFrameWithFile('images/cat1.png');
-        catAnimation.addSpriteFrameWithFile('images/cat2.png');
-        catAnimation.addSpriteFrameWithFile('images/cat3.png');
-        catAnimation.addSpriteFrameWithFile('images/cat4.png');
+        catAnimation.addSpriteFrameWithFile('images/cat11.png');
+        catAnimation.addSpriteFrameWithFile('images/cat22.png');
+        catAnimation.addSpriteFrameWithFile('images/cat33.png');
+        catAnimation.addSpriteFrameWithFile('images/cat44.png');
 
         if( this.catAnimate ) this.stopAction ( this.catAnimate );
         this.catAnimate = cc.RepeatForever.create(cc.Animate.create(catAnimation));

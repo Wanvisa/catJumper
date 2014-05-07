@@ -32,6 +32,12 @@ var GameLayer = cc.LayerColor.extend({
         this.map2.setPosition(new cc.p(0,-1000));
         // this.map2.scheduleUpdate();
 
+        this.score = 0;
+        this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 30 );
+        this.scoreLabel.setPosition( new cc.Point( 700, 520 ) );
+        this.scoreLabel.setColor( new cc.Color3B( 50, 205, 50) );
+        this.addChild( this.scoreLabel , 4);
+        this.scoreLabel.setString('Score : ' + this.score);
         
         // this.cat.scheduleUpdate();
         this.scheduleUpdate();
@@ -74,6 +80,21 @@ var GameLayer = cc.LayerColor.extend({
 
            this.cat.setDirection( Cat.MOVE.STILL );
     },
+    endGame : function(){
+        if(this.state = GameLayer.STATES.DEAD){
+            var con = confirm("Play again??");
+            if(con){
+               location.reload();
+            }
+        }
+    },
+
+    updateScore: function()
+    {
+        this.score++;
+        this.scoreLabel.setString('Score : ' + this.score);
+
+    }
    
 
 });

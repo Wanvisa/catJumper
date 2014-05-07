@@ -1,7 +1,7 @@
 var Wall = cc.Sprite.extend({
 	ctor : function(map){
 	  this._super();
-	  this.initWithFile('images/WallTest.png');
+	  this.initWithFile('images/WallTest1.jpg');
 	  this.map = map;
 	  this.cat = map.cat;
 
@@ -16,15 +16,15 @@ var Wall = cc.Sprite.extend({
      
   },
   checkPlayerWallCollision : function( playerX, playerY, wallX, wallY ) {
-    return ( (( playerX - wallX ) >= -20 && (playerX - wallX) <= 60  ) &&
-     ( ( playerY - wallY ) >= -20 && (playerY - wallY) <= 60  ));
+    return ( ((( playerX - wallX ) >= -20) && ((playerX - wallX) <= 60  )) &&
+     ( (( playerY - wallY ) >= -30) && ((playerY - wallY) <= 70  )));
       
 },
   update : function(dt){
    
     if(this.hit(this.cat)){
       this.map.gameLayer.state = GameLayer.STATES.DEAD;
-      alert("GAME OVER");
+      this.map.gameLayer.endGame();
     }
   }
 
