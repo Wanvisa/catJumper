@@ -244,7 +244,7 @@ var Map = cc.Sprite.extend({
 
 
 		var num = Math.floor(Math.random()*4);
-		// test map
+	
 		// console.log( 'random: ' + num );
 		this.GAMEMAP = array[num];
         // this.speedLevel+=0.1;
