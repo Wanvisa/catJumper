@@ -45,8 +45,10 @@ var Cat = cc.Sprite.extend({
     		      break;
     	   }
 
-
+           if(this.x<800&&this.x>0&&this.y>0&&this.y<600){
             this.updatePosition();
+           }
+          
         
     },
 

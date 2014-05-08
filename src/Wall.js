@@ -23,6 +23,11 @@ var Wall = cc.Sprite.extend({
   update : function(dt){
    
     if(this.hit(this.cat)){
+      if(this.map.cat.state == 1)
+      {
+        this.removeFromParent();
+        return;
+      }
       this.map.gameLayer.state = GameLayer.STATES.DEAD;
       this.map.gameLayer.endGame();
     }

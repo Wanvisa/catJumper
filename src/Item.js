@@ -3,7 +3,7 @@ var Item = cc.Sprite.extend({
     this.map = map;
     this.cat = map.cat;
 		this._super();
-		this.initWithFile('images/items1.gif');
+		this.initWithFile('images/Coin.png');
     
 	},
 
@@ -18,8 +18,8 @@ var Item = cc.Sprite.extend({
      
   },
   checkPlayerItemCollision : function( playerX, playerY, itemX, itemY ) {
-    if ( ( Math.abs( playerX - itemX ) <= 50 ) &&
-     ( Math.abs( playerY - itemY ) <= 50 ) )
+    if ( ( Math.abs( playerX - itemX ) <= 40 ) &&
+     ( Math.abs( playerY - itemY ) <= 40 ) )
     {
       this.map.gameLayer.updateScore();
       return true;

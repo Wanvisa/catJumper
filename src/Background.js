@@ -23,7 +23,7 @@ var BackGround = cc.Sprite.extend({
 
 				else{
 
-            		this.setPositionY(posy - 5);
+            		this.setPositionY(posy - 3);
 				}
 			
 		},

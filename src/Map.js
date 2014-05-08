@@ -4,7 +4,7 @@ var Map = cc.Sprite.extend({
 		this.gameLayer = gameLayer;
 		this.cat = gameLayer.cat;
 	
-        this.speedLevel = 0.0;
+        // this.speedLevel = 0.0;
 		this.childs = [];
         this.score = 0;
 		this.WIDTH = 20;
@@ -50,7 +50,7 @@ var Map = cc.Sprite.extend({
 		'....................',
 		'....................',
 		'....................',
-		'....................',
+		'..........h.........',
 		'....................',
 		'....................',
 		'######oooooooo######',
@@ -63,7 +63,7 @@ var Map = cc.Sprite.extend({
 		'....................',
 		'....................',
 		'...##############...',
-		'...##############...',
+		'....................',
 		'oooo............oooo',
 		'ooo..............ooo',
 		'oo................oo',
@@ -87,7 +87,7 @@ var Map = cc.Sprite.extend({
 		'....................',
 		'##.oo.#########.oo.#',
 		'....................',
-		'#.ooo.########.ooo.#',
+		'....................',
 		'....................',
 		'.......ooooooo......',
 		'....................',
@@ -224,14 +224,14 @@ var Map = cc.Sprite.extend({
 		var posy = this.getPositionY();
 
 				if(posy <= -1200){
-					console.log("map2222222222222");
+					// console.log("map2222222222222");
 					this.randomMap();
 		 			this.setPositionY(900);
 		 		}
 
 				else{
 
-            		this.setPositionY(posy - (3 + this.speedLevel ) );
+            		this.setPositionY(posy - 4 );
 				}
 	},
 	randomMap: function(){
@@ -247,7 +247,7 @@ var Map = cc.Sprite.extend({
 		// test map
 		// console.log( 'random: ' + num );
 		this.GAMEMAP = array[num];
-        this.speedLevel+=0.1;
+        // this.speedLevel+=0.1;
      
 
 
