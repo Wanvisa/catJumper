@@ -18,7 +18,6 @@
             'src/Map.js',
             'src/Item.js',
             'src/Wall.js',
-            'src/Heart.js',
             'src/resource.js',
             'src/MenuLayer.js',
              //add your own files in order here

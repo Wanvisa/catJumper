@@ -23,16 +23,6 @@ var Heart = cc.Sprite.extend({
   
     if(this.hit(this.cat))
     {
-      // this.cat.state = 1;
-      // var catPosX = this.cat.getPositionX();
-      // var catPosY = this.cat.getPositionY();
-
-      // this.cat.removeFromParent();
-
-      //   this.cat = new Cat(catPosX,catPosY);
-      //   this.cat.setAnchorPoint(cc.p(0.5,0.5));
-      //   this.addChild(this.cat);
-
       this.getParent().removeChild(this);
     }
   }

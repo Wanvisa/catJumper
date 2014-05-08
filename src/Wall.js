@@ -24,24 +24,17 @@ var Wall = cc.Sprite.extend({
    
     if(this.hit(this.cat)){
 
-      // if(this.map.cat.state == 1)
-      // {
-      //   this.removeFromParent();
+        this.removeFromParent();
+        var wallAnimation = new cc.Animation.create();
+        wallAnimation.addSpriteFrameWithFile('images/Fire.png');
+        wallAnimation.setDelayPerUnit( 100 );
 
-      //   return;
-      // }
+        this.action2 = cc.Animate.create( wallAnimation ) ;
+        this.runAction(this.action2);
+
+      this.scheduleOnce(function(){
       this.removeFromParent();
-    var wallAnimation = new cc.Animation.create();
-    wallAnimation.addSpriteFrameWithFile('images/Fire.png');
-    //itemAnimation.setPosition(cc.p(myPosX,myPosY));
-    wallAnimation.setDelayPerUnit( 100 );
-
-    this.action2 = cc.Animate.create( wallAnimation ) ;
-    this.runAction(this.action2);
-
-    this.scheduleOnce(function(){
-      this.removeFromParent();
-    },0.1);
+      },0.1);
 
       this.map.gameLayer.state = GameLayer.STATES.DEAD;
       this.map.gameLayer.endGame();

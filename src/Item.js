@@ -40,23 +40,17 @@ var Item = cc.Sprite.extend({
   update : function(dt){
     
     if(this.hit(this.cat)){
-      
 
-      // var myPosX = this.map.getPositionX() + this.getPositionX();
-      // var myPosY = this.map.getPositionY() +this.getPositionY();
+        var itemAnimation = new cc.Animation.create();
+        itemAnimation.addSpriteFrameWithFile('images/CoinAnimate.png');
+        itemAnimation.setDelayPerUnit( 100 );
+        this.action2 = cc.Animate.create( itemAnimation ) ;
+        this.runAction(this.action2);
+         cc.AudioEngine.getInstance().playEffect( 'Sound/CoinSound.mp3' );
 
-    var itemAnimation = new cc.Animation.create();
-    itemAnimation.addSpriteFrameWithFile('images/CoinAnimate.png');
-    //itemAnimation.setPosition(cc.p(myPosX,myPosY));
-    itemAnimation.setDelayPerUnit( 100 );
-
-    this.action2 = cc.Animate.create( itemAnimation ) ;
-    this.runAction(this.action2);
-    cc.AudioEngine.getInstance().playEffect( 'Sound/CoinSound.mp3' );
-
-    this.scheduleOnce(function(){
-      this.removeFromParent();
-    },0.1);
+      this.scheduleOnce(function(){
+       this.removeFromParent();
+      },0.1);
 
 
     }

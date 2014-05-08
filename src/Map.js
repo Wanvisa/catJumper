@@ -4,7 +4,7 @@ var Map = cc.Sprite.extend({
 		this.gameLayer = gameLayer;
 		this.cat = gameLayer.cat;
 	
-        // this.speedLevel = 0.0;
+        
 		this.childs = [];
         this.score = 0;
 		this.WIDTH = 20;
@@ -50,7 +50,7 @@ var Map = cc.Sprite.extend({
 		'....................',
 		'....................',
 		'....................',
-		'..........h.........',
+		'....................',
 		'....................',
 		'....................',
 		'######oooooooo######',
@@ -201,18 +201,10 @@ var Map = cc.Sprite.extend({
 	  		
 			}
 
-	  		else if(this.GAMEMAP[r][c]=='h'){
-	  			this.heart = new Heart(this);
-	  			this.heart.setAnchorPoint(cc.p(0,0));
-	  			this.heart.setPosition(cc.p(c*40,r*40));
-	  			this.addChild(this.heart);
-	  			this.heart.scheduleUpdate();
-	  			this.childs.push(this.heart);
-
-	  		}
+	  
 	  		
 	  	}
-	  	// this.randomMap();
+	
 
 
 	  	this.setAnchorPoint(cc.p(0,0)); 
@@ -224,7 +216,7 @@ var Map = cc.Sprite.extend({
 		var posy = this.getPositionY();
 
 				if(posy <= -1200){
-					// console.log("map2222222222222");
+					
 					this.randomMap();
 		 			this.setPositionY(900);
 		 		}
@@ -245,9 +237,9 @@ var Map = cc.Sprite.extend({
 
 		var num = Math.floor(Math.random()*4);
 	
-		// console.log( 'random: ' + num );
+	
 		this.GAMEMAP = array[num];
-        // this.speedLevel+=0.1;
+   
      
 
 
@@ -276,15 +268,7 @@ var Map = cc.Sprite.extend({
 	  		
 			}
 
-	  		else if(this.GAMEMAP[r][c]=='h'){
-	  			this.heart = new Heart(this);
-	  			this.heart.setAnchorPoint(cc.p(0,0));
-	  			this.heart.setPosition(cc.p(c*40,r*40));
-	  			this.addChild(this.heart);
-	  			this.heart.scheduleUpdate();
-	  			this.childs.push(this.heart);
-
-	  		}
+	  		
 	  		
 	  	}
 	}

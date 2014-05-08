@@ -13,13 +13,13 @@ var GameLayer = cc.LayerColor.extend({
         this.BG1.setAnchorPoint(cc.p(0,0));
         this.BG1.setPosition(cc.p(0,0));
         this.addChild(this.BG1);
-        // this.BG1.scheduleUpdate();
+        
         
         this.BG2 = new BackGround();
         this.BG2.setAnchorPoint(cc.p(0,0));
         this.BG2.setPosition(cc.p(0,600));
         this.addChild(this.BG2);
-        // this.BG2.scheduleUpdate();
+        
 
         this.cat = new Cat(400,200);
         this.cat.setAnchorPoint(cc.p(0.5,0.5));
@@ -28,21 +28,20 @@ var GameLayer = cc.LayerColor.extend({
         this.map1 = new Map(this);
         this.map1.setPosition((new cc.p(0,0)));
         this.addChild(this.map1);
-        // this.map1.scheduleUpdate();
+        this.over = false;
 
         this.map2 = new Map(this);
         this.addChild(this.map2);
         this.map2.setPosition(new cc.p(0,-1000));
-        // this.map2.scheduleUpdate();
+      
 
         this.score = 0;
         this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 45 );
         this.scoreLabel.setPosition( new cc.Point( 570, 170 ) );
         this.scoreLabel.setColor( new cc.Color3B( 50, 205, 50) );
-        // this.addChild( this.scoreLabel , 4);
-        // this.scoreLabel.setString('Score : ' + this.score);
-        
-        // this.cat.scheduleUpdate();
+
+        this.setTouchEnabled(true);
+        this.setTouchMode(1);
         this.scheduleUpdate();
         this.setKeyboardEnabled( true );
     
@@ -87,11 +86,7 @@ var GameLayer = cc.LayerColor.extend({
     },
     endGame : function(){
         if(this.state = GameLayer.STATES.DEAD){
-            // var con = confirm("Play again??");
-            // if(con){
-            //    location.reload();
-
-
+            
             this.setKeyboardEnabled(false);
             this.map1.getScheduler().unscheduleAllCallbacksForTarget(this.map1);
             this.map2.getScheduler().unscheduleAllCallbacksForTarget(this.map2);
@@ -102,16 +97,18 @@ var GameLayer = cc.LayerColor.extend({
             this.addChild(endPage, 1);
             this.addChild( this.scoreLabel , 4);
             this.scoreLabel.setString('Score : ' + this.score);
-            this.setTouchEnabled(true);
-            this.setTouchMode(1);
+          
+            this.over = true;
 
             
         }
     },    
         
     onTouchBegan:function( touch, event ) {
-        var director = cc.Director.getInstance();
-        director.replaceScene(cc.TransitionFade.create(1.5, new StartScene()));
+        if(this.over){
+            var director = cc.Director.getInstance();
+            director.replaceScene(cc.TransitionFade.create(1.5, new StartScene()));
+        }
     },
 
     updateScore: function()
