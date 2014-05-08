@@ -52,6 +52,7 @@ var Item = cc.Sprite.extend({
 
     this.action2 = cc.Animate.create( itemAnimation ) ;
     this.runAction(this.action2);
+    cc.AudioEngine.getInstance().playEffect( 'Sound/CoinSound.mp3' );
 
     this.scheduleOnce(function(){
       this.removeFromParent();
