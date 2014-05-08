@@ -4,6 +4,9 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
         this.state = GameLayer.STATES.FRONT; 
+
+        this.setTouchEnabled(true);
+        this.setTouchMode(1);
         
 
         this.BG1 = new BackGround();
@@ -33,11 +36,11 @@ var GameLayer = cc.LayerColor.extend({
         // this.map2.scheduleUpdate();
 
         this.score = 0;
-        this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 30 );
-        this.scoreLabel.setPosition( new cc.Point( 700, 520 ) );
+        this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 45 );
+        this.scoreLabel.setPosition( new cc.Point( 570, 170 ) );
         this.scoreLabel.setColor( new cc.Color3B( 50, 205, 50) );
-        this.addChild( this.scoreLabel , 4);
-        this.scoreLabel.setString('Score : ' + this.score);
+        // this.addChild( this.scoreLabel , 4);
+        // this.scoreLabel.setString('Score : ' + this.score);
         
         // this.cat.scheduleUpdate();
         this.scheduleUpdate();
@@ -49,6 +52,7 @@ var GameLayer = cc.LayerColor.extend({
         
         if(this.state == GameLayer.STATES.FRONT ){
             this.state = GameLayer.STATES.STARTED;
+
             this.startGame();
         }
        
@@ -68,6 +72,7 @@ var GameLayer = cc.LayerColor.extend({
         }
     },
     startGame : function(){
+           cc.AudioEngine.getInstance().playMusic( 'Sound/gameSound.wav', true );
 
             this.BG1.scheduleUpdate();
             this.BG2.scheduleUpdate();
@@ -82,11 +87,31 @@ var GameLayer = cc.LayerColor.extend({
     },
     endGame : function(){
         if(this.state = GameLayer.STATES.DEAD){
-            var con = confirm("Play again??");
-            if(con){
-               location.reload();
-            }
+            // var con = confirm("Play again??");
+            // if(con){
+            //    location.reload();
+
+
+            this.setKeyboardEnabled(false);
+            this.map1.getScheduler().unscheduleAllCallbacksForTarget(this.map1);
+            this.map2.getScheduler().unscheduleAllCallbacksForTarget(this.map2);
+            var endPage = cc.Sprite.create('images/overPage.png');
+            cc.AudioEngine.getInstance().stopMusic();
+            endPage.setAnchorPoint(cc.p(0,0));
+            endPage.setPosition(cc.p(0,0));
+            this.addChild(endPage, 1);
+            this.addChild( this.scoreLabel , 4);
+            this.scoreLabel.setString('Score : ' + this.score);
+            this.setTouchEnabled(true);
+            this.setTouchMode(1);
+
+            
         }
+    },    
+        
+    onTouchBegan:function( touch, event ) {
+        var director = cc.Director.getInstance();
+        director.replaceScene(cc.TransitionFade.create(1.5, new StartScene()));
     },
 
     updateScore: function()
@@ -95,6 +120,7 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLabel.setString('Score : ' + this.score);
 
     }
+
    
 
 });
