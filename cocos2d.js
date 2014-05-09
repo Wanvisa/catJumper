@@ -20,6 +20,7 @@
             'src/Wall.js',
             'src/resource.js',
             'src/MenuLayer.js',
+            'src/Stage.js'
              //add your own files in order here
         ]
     };

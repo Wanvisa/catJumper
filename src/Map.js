@@ -4,7 +4,6 @@ var Map = cc.Sprite.extend({
 		this.gameLayer = gameLayer;
 		this.cat = gameLayer.cat;
 	
-        
 		this.childs = [];
         this.score = 0;
 		this.WIDTH = 20;
@@ -13,206 +12,13 @@ var Map = cc.Sprite.extend({
 		this.WallX = 0;
 		this.WallY = 0;
 
-		arrayInit = [
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-	    '....................',
-		];
-		array[1] = [
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'######oooooooo######',
-		'#####oooooooooo#####',
-		'####oooooooooooo####',
-		'....................',
-		'.......ooooooo......',
-		'..oooooo....oooooo..',
-		'..oooooo....oooooo..',
-		'....................',
-		'....................',
-		'...##############...',
-		'....................',
-		'oooo............oooo',
-		'ooo..............ooo',
-		'oo................oo',
-		'o..................o',
-		'######oooooooo######',
-		'#####oooooooooo#####',
-		'####oooooooooooo####',
-		'....................',
-		'...####ooooooo####...',
-		'..oooooo....oooooo..',
-		'..oooooo....oooooo..',
-		'.###............###.',
-		];
-		array[2] = [
-	    '....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'##.oo.#########.oo.#',
-		'....................',
-		'....................',
-		'....................',
-		'.......ooooooo......',
-		'....................',
-		'..oooooo....oooooo..',
-		'....................',
-		'####......oo....####',
-		'###..oo..........###',
-		'##.........oo.....##',
-		'....................',
-		'....................',
-		'....................',
-		'..o..##########..o..',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'...####ooooooo####..',
-		'..oooooo....oooooo..',
-		'..oooooo....oooooo..',
-		'.###............###.',
-		];
-		array[3] = [
-	    '....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'#####..oooooo..#####',
-		'....................',
-		'#####...oooo...#####',
-		'######........######',
-		'#####..........#####',
-		'....................',
-		'....................',
-		'....................',
-		'.ooooo........ooooo.',
-		'....................',
-		'....................',
-		'....................',
-		'oooooo........oooooo',
-		'ooooooo######ooooooo',
-		'.....................',
-		'....................',
-		'ooooooo......ooooooo',
-		'....................',
-		'..oo..oo..oo..oo..oo',
-		'....................',
-		'######ooooooo#######',
-		'#######.....########',
-		'....................',
-		];
-		array[0] = [
-	    '....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....................',
-		'....oooooooooooo....',
-		'.......ooooooo......',
-		'....................',
-		'....................',
-		'#####..........#####',
-		'....................',
-		'...ooooo....ooooo...',
-		'....................',
-		'.ooooo........ooooo.',
-		'....................',
-		'....................',
-		'######........######',
-		'#####..........#####',
-		'....................',
-		'....................',
-		'....................',
-		'oooooo.######.oooooo',
-		'....................',
-		'ooooooo......ooooooo',
-		'....................',
-		'##..##........##..##',
-		'....................',
-		'######ooooooo#######',
-	
-
-		];
-	  	this.GAMEMAP = arrayInit;
-	  	for(var r = this.HEIGHT-1;r>=0;r--)
-	  	for(var c = 0;c<this.WIDTH;c++){
-	  		if(this.GAMEMAP[r][c]=='#'){
-
-
-	  			this.wall = new Wall(this);
-	  			this.wall.setAnchorPoint(cc.p(0,0));
-	  			this.wall.setPosition(cc.p(c*40,r*40));
-	  			this.addChild(this.wall);
-	  			this.wall.scheduleUpdate();
-	  			this.childs.push(this.wall);
-
-	  		}
-	  		else if(this.GAMEMAP[r][c]=='o'){
-              
-
-	  			this.item = new Item(this);
-	  			this.item.setAnchorPoint(cc.p(0.5,0.5));
-	  			this.item.setPosition(cc.p(c*40+25,r*40+28));
-	  			this.addChild(this.item);
-	  			this.item.scheduleUpdate();
-	  			this.childs.push(this.item);
-	  		
-			}
-
-	  
-	  		
-	  	}
-	
-
+		this.stage = new Stage();
+	  	this.GAMEMAP = this.stage.arrayInit;
+	  	this.genMap();
 
 	  	this.setAnchorPoint(cc.p(0,0)); 
 	},
 	update: function(dt){
-
-	
-
 		var posy = this.getPositionY();
 
 				if(posy <= -1200){
@@ -220,7 +26,6 @@ var Map = cc.Sprite.extend({
 					this.randomMap();
 		 			this.setPositionY(900);
 		 		}
-
 				else{
 
             		this.setPositionY(posy - 4 );
@@ -234,45 +39,35 @@ var Map = cc.Sprite.extend({
 		}
 		this.childs = [];
 
-
 		var num = Math.floor(Math.random()*4);
-	
-	
-		this.GAMEMAP = array[num];
-   
-     
+		this.GAMEMAP = this.stage.array[num];
+		this.genMap();
 
+	},
 
+	genMap: function()
+	{
 		for(var r = this.HEIGHT-1;r>=0;r--)
-	  	for(var c = 0;c<this.WIDTH;c++){
-	  		if(this.GAMEMAP[r][c]=='#'){
-
-
-	  			this.wall = new Wall(this);
-	  			this.wall.setAnchorPoint(cc.p(0,0));
-	  			this.wall.setPosition(cc.p(c*40,r*40));
-	  			this.addChild(this.wall);
-	  			this.wall.scheduleUpdate();
-	  			this.childs.push(this.wall);
-
-	  		}
-	  		else if(this.GAMEMAP[r][c]=='o'){
-              
-
-	  			this.item = new Item(this);
-	  			this.item.setAnchorPoint(cc.p(0.5,0.5));
-	  			this.item.setPosition(cc.p(c*40+20,r*40+20));
-	  			this.addChild(this.item);
-	  			this.item.scheduleUpdate();
-	  			this.childs.push(this.item);
-	  		
-			}
-
-	  		
-	  		
-	  	}
+		  	for(var c = 0;c<this.WIDTH;c++){
+		  		if(this.GAMEMAP[r][c]=='#'){
+		  			this.wall = new Wall(this);
+		  			this.wall.setAnchorPoint(cc.p(0,0));
+		  			this.wall.setPosition(cc.p(c*40,r*40));
+		  			this.addChild(this.wall);
+		  			this.wall.scheduleUpdate();
+		  			this.childs.push(this.wall);
+		  		}
+		  		else if(this.GAMEMAP[r][c]=='o'){
+		  			this.item = new Item(this);
+		  			this.item.setAnchorPoint(cc.p(0.5,0.5));
+		  			this.item.setPosition(cc.p(c*40+20,r*40+20));
+		  			this.addChild(this.item);
+		  			this.item.scheduleUpdate();
+		  			this.childs.push(this.item);
+				}
+		  		
+		  	}
 	}
 	
 
 });
-var array = [];

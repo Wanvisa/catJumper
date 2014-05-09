@@ -51,7 +51,6 @@ var GameLayer = cc.LayerColor.extend({
         
         if(this.state == GameLayer.STATES.FRONT ){
             this.state = GameLayer.STATES.STARTED;
-
             this.startGame();
         }
        
@@ -85,11 +84,15 @@ var GameLayer = cc.LayerColor.extend({
            this.cat.setDirection( Cat.MOVE.STILL );
     },
     endGame : function(){
-        if(this.state = GameLayer.STATES.DEAD){
-            
+        if(this.state == GameLayer.STATES.DEAD){
+            for (var i = 0; i<this.map1.childs.length; i++)
+                this.map1.childs[i].removeFromParent();
+            for (var i = 0; i<this.map2.childs.length; i++)
+                this.map2.childs[i].removeFromParent();
             this.setKeyboardEnabled(false);
             this.map1.getScheduler().unscheduleAllCallbacksForTarget(this.map1);
             this.map2.getScheduler().unscheduleAllCallbacksForTarget(this.map2);
+
             var endPage = cc.Sprite.create('images/overPage.png');
             cc.AudioEngine.getInstance().stopMusic();
             endPage.setAnchorPoint(cc.p(0,0));
@@ -100,7 +103,6 @@ var GameLayer = cc.LayerColor.extend({
           
             this.over = true;
 
-            
         }
     },    
         
@@ -111,14 +113,11 @@ var GameLayer = cc.LayerColor.extend({
         }
     },
 
-    updateScore: function()
-    {
+    updateScore: function(){
         this.score++;
         this.scoreLabel.setString('Score : ' + this.score);
 
     }
-
-   
 
 });
 

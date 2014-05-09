@@ -49,7 +49,6 @@ var Cat = cc.Sprite.extend({
             this.updatePosition();
            }
           
-        
     },
 
     setDirection: function(dir){
@@ -57,8 +56,6 @@ var Cat = cc.Sprite.extend({
         this.direction = dir;
         
     },
-    
-   
     
 });
 
